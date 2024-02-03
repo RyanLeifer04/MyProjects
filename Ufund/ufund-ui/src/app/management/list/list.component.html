@@ -1,0 +1,44 @@
+<div>
+    <div class="container">
+        <h1>Needs</h1>
+        <a routerLink="add">Add Need</a>
+        <table class="table table-striped" aria-label="Need Data">
+            <thead>
+                <tr>
+                    <th>Need Name</th>
+                    <th>Needed</th>
+                    <th>In-Stock</th>
+                    <th>Unit Quantifier</th>
+                    <th>Tags</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let need of needs">
+                    <td>{{need.name}}</td>
+                    <td>{{need.amount_needed}}</td>
+                    <td>{{need.amount_in_stock}}</td>
+                    <td>{{need.amount_unit}}</td>
+                    <td>{{need.tags}}</td>
+
+                    <td style="white-space: nowrap">
+                        <a routerLink="edit/{{need.id}}" class="btn btn-sm btn-primary">Edit</a>
+                        <span style="white-space: nowrap;">&nbsp;</span>
+                        <a routerLink="push/{{need.id}}" class="btn btn-sm btn-primary">Push Notification</a>
+                        <span style="white-space: nowrap;">&nbsp;</span>
+                        <button type="button" (click)="deleteNeed(need.id)" class="btn btn-sm btn-danger"
+                            style="width: 58px" [disabled]="need.isDeleting">
+                            <span *ngIf="need.isDeleting" class="spinner-border spinner-border-sm"></span>
+                            <span *ngIf="!need.isDeleting">Delete</span>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="!needs">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

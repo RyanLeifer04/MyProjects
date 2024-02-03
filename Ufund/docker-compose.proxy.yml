@@ -1,0 +1,59 @@
+# Docker-compose version
+version: "3.8"
+
+# By default, all services in the same docker compose file
+# are on the same internal network. This means inter-container 
+# discovery and communication is contained to the device, and 
+# is relatively safe.
+
+services:
+  #Backend container declaration
+  backend:
+    image: backend
+    container_name: ufund_backend
+    #Use Dockerfile, but only build the backend
+    build: ./ufund-api
+    #Tell Docker daemon to auto-start service on boot, unless manually stopped
+    restart: unless-stopped
+    volumes:
+      - ./backend-storage:/app/data
+
+  #Front-end container declaration
+  frontend:
+    container_name: ufund_frontend
+    #Use Dockerfile, but build the frontend
+    build:
+      context: ./ufund-ui
+      # Tell the backend where the frontend is
+      args:
+        BACKEND_API_PORT: 8080
+        BACKEND_API_URL: ufund_backend
+    #Tell Docker daemon to auto-start service on boot, unless manually stopped
+    restart: unless-stopped
+    # Caddy labels
+    labels:
+      # Domain name you want to host at
+      caddy: localhost
+      # Specifies which port in this container needs to be proxied
+      caddy.reverse_proxy: "{{upstreams 80}}"
+
+  #Reverse Proxy container declaration
+  caddy:
+    #Caddy is a commonly used HTTPS reverse proxy
+    image: docker.io/lucaslorentz/caddy-docker-proxy:2.8.9
+    #Both HTTP and HTTPS ports need to be publicly exposed
+    ports:
+      - 80:80
+      - 443:443
+    #To allow for quick and convenient setup, Caddy requires access to the Docker socket
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    #Start caddy on reboot
+    restart: unless-stopped
+    labels:
+      # REPLACE THIS EMAIL
+      # This is the email provided to LetsEncrypt, to which you will be sent an email
+      # when your HTTPS certificate is bound to expire.
+      caddy.email: your-email-here@example.com
+
+

@@ -1,0 +1,5 @@
+.vscode/*
+docs/.settings
+docs/.project
+docs/.classpath
+backend-storage/

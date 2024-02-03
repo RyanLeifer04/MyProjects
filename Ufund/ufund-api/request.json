@@ -1,0 +1,6 @@
+{
+    "name": "Test Need",
+    "amount_in_stock": 12,
+    "amount_needed": 6,
+    "amount_unit": "kg"
+}

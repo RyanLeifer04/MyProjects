@@ -1,0 +1,68 @@
+<div>
+    <div class="container">
+        <h1>{{title}}</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Need name</label>
+                    <input type="text" formControlName="name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && this.form.controls['name'].errors }" />
+                    <div *ngIf="submitted && this.form.controls['name'].errors" class="invalid-feedback">
+                        <div *ngIf="this.form.controls['name'].errors['required']">Need name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Amount needed</label>
+                    <input type="text" formControlName="amount_needed" class="form-control" (change)="validateFields()"
+                        [ngClass]="{ 'is-invalid': submitted && this.form.controls['amount_needed'].errors }" />
+                    <div *ngIf="submitted && this.form.controls['amount_needed'].errors" class="invalid-feedback">
+                        <div *ngIf="this.form.controls['amount_needed'].errors['required']">Amount needed is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Amount in-stock</label>
+                    <input type="text" formControlName="amount_in_stock" class="form-control"
+                        (change)="validateFields()"
+                        [ngClass]="{ 'is-invalid': submitted && this.form.controls['amount_in_stock'].errors }" />
+                    <div *ngIf="submitted && this.form.controls['amount_in_stock'].errors" class="invalid-feedback">
+                        <div *ngIf="this.form.controls['amount_in_stock'].errors['required']">Amount in-stock is
+                            required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Amount unit</label>
+                    <input type="text" formControlName="amount_unit" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && this.form.controls['amount_unit'].errors }" />
+                    <div *ngIf="submitted && this.form.controls['amount_unit'].errors" class="invalid-feedback">
+                        <div *ngIf="this.form.controls['amount_unit'].errors['required']">Amount Unit is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Need Tags (comma separated)</label>
+                    <input type="text" formControlName="tags" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && this.form.controls['tags'].errors }" />
+                    <div *ngIf="submitted && this.form.controls['tags'].errors" class="invalid-feedback">
+                        <div *ngIf="this.form.controls['tags'].errors['required']">Need Tags is/are required</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button [disabled]="submitting" class="btn btn-primary">
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm"></span>
+                    Save
+                </button>
+                <a routerLink="/adminView" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

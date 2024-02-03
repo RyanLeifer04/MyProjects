@@ -1,0 +1,51 @@
+<div>
+    <div class="container">
+        <h1>Needs</h1>
+        <div class="search-container">
+            <form [formGroup]="form" (ngSubmit)="searchNeeds()">
+                <input type="text" formControlName="search_term" class="form-control">
+                <button class="btn btn-primary">
+                    Search
+                </button>
+            </form>
+        </div>
+        <table class="table table-striped" aria-label="Needs List">
+            <thead>
+                <tr>
+                    <th>Need name</th>
+                    <th>Amount needed</th>
+                    <th>Amount in-stock</th>
+                    <th>Amount unit</th>
+                    <th>Tags</th>
+                    <th style="width: 10%"></th>
+                    <th style="width: 10%"></th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let need of needs">
+                    <td>{{need.name}}</td>
+                    <td>{{need.amount_needed}}</td>
+                    <td>{{need.amount_in_stock}}</td>
+                    <td>{{need.amount_unit}}</td>
+                    <td>{{need.tags}}</td>
+                    <td style="white-space: nowrap">
+                        <button type="button" (click)="addToBasket(need.id)">
+                            Add to Basket
+                        </button>
+                    </td>
+                    <td style="white-space: nowrap">
+                        <button type="button" (click)="subscribe(need.id)">
+                            Subscribe
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="!needs">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

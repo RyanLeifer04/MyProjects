@@ -1,0 +1,58 @@
+<div>
+    <div class="container">
+        <h1>Notifications</h1>
+        <table class="table table-striped" aria-label="Messages Inbox">
+            <thead>
+                <tr>
+                    <th>Need</th>
+                    <th>Message</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let need of needs; index as i">
+                    <td>{{need.name}}</td>
+                    <td>{{need.tags}}</td>
+                    <td>{{notifications[i].message}}</td>
+
+                    <td style="white-space: nowrap">
+                        <button type="button" (click)="removeNotification(notifications[i].id!)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <h1>Subscriptions</h1>
+        <table class="table table-striped" aria-label="Subscriptions List">
+            <thead>
+                <tr>
+                    <th>Need name</th>
+                    <th>Amount needed</th>
+                    <th>Amount in-stock</th>
+                    <th>Amount unit</th>
+                    <th>Tags</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let need of subscriptions">
+                    <td>{{need.name}}</td>
+                    <td>{{need.tags}}</td>
+                    <td>{{need.amount_needed}}</td>
+                    <td>{{need.amount_in_stock}}</td>
+                    <td>{{need.amount_unit}}</td>
+                    <td>{{need.tags}}</td>
+                    <td style="white-space: nowrap">
+                        <button type="button" (click)="unsubscribe(need.id!)">
+                            Unsubscribe
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

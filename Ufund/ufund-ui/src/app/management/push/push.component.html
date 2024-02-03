@@ -1,0 +1,25 @@
+<div>
+    <div class="container">
+        <h1>{{title}}</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Message</label>
+                    <input type="text" formControlName="message" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && this.form.controls['message'].errors }" />
+                    <div *ngIf="submitted && this.form.controls['message'].errors" class="invalid-feedback">
+                        <div *ngIf="this.form.controls['message'].errors['required']">A message is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button [disabled]="submitting" class="btn btn-primary">
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm"></span>
+                    Push
+                </button>
+                <a routerLink="/adminView" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

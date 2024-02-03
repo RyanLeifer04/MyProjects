@@ -1,0 +1,1 @@
+Design loosely based off of: https://jasonwatmore.com/angular-15-free-course-1-create-base-project-structure

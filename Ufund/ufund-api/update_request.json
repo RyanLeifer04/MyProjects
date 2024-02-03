@@ -1,0 +1,7 @@
+{
+    "id": 1,
+    "name": "Updated Need",
+    "amount_in_stock": 10,
+    "amount_needed": 5,
+    "amount_unit": "g"
+}

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand" *ngIf="user?.admin!; then admin else notAdmin">
+</nav>
+
+<ng-template #notAdmin>
+    <nav class="navbar navbar-expand" *ngIf="((!user)); then guestUser else helper">
+    </nav>
+</ng-template>
+
+
+<div class="container">
+    <app-alert />
+    <router-outlet />
+</div>
+
+<ng-template #guestUser>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <span style="white-space: nowrap;">&nbsp;</span>
+        <a class="nav-item nav-link" routerLink="/account/login">Login</a>
+    </div>
+</ng-template>
+
+<ng-template #helper>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Home</a>
+            <span style="white-space: nowrap;">&nbsp;</span>
+        <a class="nav-item nav-link" routerLink="/needs" routerLinkActive="active">Needs</a>
+        <span style="white-space: nowrap;">&nbsp;</span>
+        <a class="nav-item nav-link" routerLink="/basket" routerLinkActive="active">Basket</a>
+        <span style="white-space: nowrap;">&nbsp;</span>
+        <a class="nav-item nav-link" routerLink="/notifications" routerLinkActive="active">Notifications</a>
+        <span style="white-space: nowrap;">&nbsp;</span>
+        <button class="btn btn-link nav-item nav-link" (click)="logout()">Log-out</button>
+
+    </div>
+</ng-template>
+
+<ng-template #admin>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Home</a>
+            <span style="white-space: nowrap;">&nbsp;</span>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <span style="white-space: nowrap;">&nbsp;</span>
+        <a class="nav-item nav-link" routerLink="/adminView" routerLinkActive="active">Needs</a>
+        <span style="white-space: nowrap;">&nbsp;</span>
+        <button class="btn btn-link nav-item nav-link" (click)="logout()">Log-out</button>
+    </div>
+</ng-template>

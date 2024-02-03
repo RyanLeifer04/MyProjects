@@ -1,0 +1,30 @@
+# Docker-compose version
+version: "3.8"
+
+services:
+  #Backend container declaration
+  backend:
+    image: backend
+    container_name: ufund-backend
+    #Use Dockerfile, but only build the backend
+    build: ./ufund-api
+    #Tell Docker daemon to auto-start service on boot, unless manually stopped
+    restart: unless-stopped
+    volumes:
+      - ./backend-storage:/app/data
+  #Front-end container declaration
+  frontend:
+    container_name: ufund_frontend
+    #Use Dockerfile, but build the frontend
+    build:
+      context: ./ufund-ui
+      args:
+        BACKEND_API_URL: "ufund-backend"
+        BACKEND_API_PORT: "8080"
+    #Tell Docker daemon to auto-start service on boot, unless manually stopped
+    restart: unless-stopped
+    #Expose Nginx port to a unique port
+    ports:
+      # Outbound port: 8080
+      # Container port: 80
+      - "8080:80"
