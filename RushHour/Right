@@ -1,0 +1,49 @@
+Not Proper Input
+
+
+
+- - - - - -
+- - - - - -
+- - R R - -   < Exit
+- - O - - -
+- - O A - -
+- - O A - -
+
+
+Moves: 8
+> R right
+
+
+
+- - - - - -
+- - - - - -
+- - - R R -   < Exit
+- - O - - -
+- - O A - -
+- - O A - -
+
+
+Moves: 9
+> R right
+
+
+
+- - - - - -
+- - - - - -
+- - - - R R   < Exit
+- - O - - -
+- - O A - -
+- - O A - -
+
+
+Moves: 10
+> R right
+Exception in thread "main" rushhour.model.RushHourException: Car would go of table
+        at rushhour/rushhour.model.RushHour.moveVehicle(RushHour.java:92)
+        at rushhour/rushhour.view.RushHourCLI.main(RushHourCLI.java:77)
+
+
+
+
+
+quit

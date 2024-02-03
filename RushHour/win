@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+        at rushhour/rushhour.view.RushHourCLI.main(RushHourCLI.java:73)
+aidan@aidans-air-8 2225-124-project-great-lakes-avengers % 
+
+
